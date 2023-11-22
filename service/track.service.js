@@ -13,17 +13,28 @@ const postTrackDetails = async (req, res) => {
 };
 
 const getTrackDetails = async (req, res) => {
-  const email = req.params.email;
+  const email = req.params?.email;
 
-  try {
-    const details = await TrackModel.find({
-      email: email,
-    });
-    res.send(details);
-  } catch (error) {
-    res
-      .status(400)
-      .json({ msg: "Failed to fetch the tracking data", error: error });
+  if (email) {
+    try {
+      const details = await TrackModel.find({
+        email: email,
+      });
+      res.send(details);
+    } catch (error) {
+      res
+        .status(400)
+        .json({ msg: "Failed to fetch the tracking data", error: error });
+    }
+  } else {
+    try {
+      const details = await TrackModel.find({});
+      res.send(details);
+    } catch (error) {
+      res
+        .status(400)
+        .json({ msg: "Failed to fetch the tracking data", error: error });
+    }
   }
 };
 

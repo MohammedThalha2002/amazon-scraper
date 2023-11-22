@@ -5,7 +5,11 @@ const TrackSchema = mongoose.Schema({
     type: String,
     required: true,
   },
-  price: {
+  exp_price: {
+    type: Number,
+    required: true,
+  },
+  curr_price: {
     type: Number,
     required: true,
   },

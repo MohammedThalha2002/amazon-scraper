@@ -5,11 +5,15 @@ const {
   postTrackDetails,
 } = require("../service/track.service");
 
+router.get("/track-details", (req, res) => {
+  getTrackDetails(req, res);
+});
+
 router.post("/addtrack", (req, res) => {
   postTrackDetails(req, res);
 });
 
-router.get("/get-track-deatils/:email", (req, res) => {
+router.get("/track-details/:email", (req, res) => {
   getTrackDetails(req, res);
 });
 
