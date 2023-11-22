@@ -1,9 +1,16 @@
 const express = require("express");
 const router = express.Router();
-const { postLog } = require("../service/track.service");
+const {
+  getTrackDetails,
+  postTrackDetails,
+} = require("../service/track.service");
 
-router.post("/addtrack", async (req, res) => {
-  postLog(req, res);
+router.post("/addtrack", (req, res) => {
+  postTrackDetails(req, res);
+});
+
+router.get("/get-track-deatils/:email", (req, res) => {
+  getTrackDetails(req, res);
 });
 
 module.exports = router;

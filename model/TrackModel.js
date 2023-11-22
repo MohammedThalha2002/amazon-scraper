@@ -1,16 +1,12 @@
 const mongoose = require("mongoose");
 
 const TrackSchema = mongoose.Schema({
-  name: {
-    type: String,
-    required: true,
-  },
   url: {
     type: String,
     required: true,
   },
   price: {
-    type: String,
+    type: Number,
     required: true,
   },
   email: {
