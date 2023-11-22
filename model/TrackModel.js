@@ -12,6 +12,7 @@ const TrackSchema = mongoose.Schema({
   curr_price: {
     type: Number,
     required: true,
+    default: 0,
   },
   email: {
     type: String,
