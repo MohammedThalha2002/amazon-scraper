@@ -3,6 +3,7 @@ const router = express.Router();
 const {
   getTrackDetails,
   postTrackDetails,
+  updateTrackPrices,
 } = require("../service/track.service");
 
 router.get("/track-details", (req, res) => {
@@ -15,6 +16,10 @@ router.post("/addtrack", (req, res) => {
 
 router.get("/track-details/:email", (req, res) => {
   getTrackDetails(req, res);
+});
+
+router.get("/update-price/:email", (req, res) => {
+  updateTrackPrices(req, res);
 });
 
 module.exports = router;
