@@ -1,4 +1,5 @@
 const TrackModel = require("../model/TrackModel");
+const { scrape } = require("./scrape.service");
 
 const postTrackDetails = async (req, res) => {
   const track = new TrackModel(req.body);
@@ -45,9 +46,7 @@ const updateTrackPrices = async (req, res) => {
     const details = await TrackModel.find({
       email: email,
     });
-    for (const detail of details) {
-      console.log(detail);
-    }
+    await scrape(details);
     res.send(details);
   } catch (error) {
     res
