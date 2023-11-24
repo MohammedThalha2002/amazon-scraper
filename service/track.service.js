@@ -7,11 +7,15 @@ const postTrackDetails = async (req, res) => {
   const track = new TrackModel(req.body);
   try {
     await track.save();
-    res.send(track);
-  } catch (error) {
     res
-      .status(400)
-      .json({ msg: "Failed to upload the tracking data", error: error });
+      .status(200)
+      .json({ msg: "Tracking data uploaded successfully", staus: "success" });
+  } catch (error) {
+    res.status(400).json({
+      msg: "Failed to upload the tracking data",
+      error: error,
+      staus: "failed",
+    });
   }
 };
 
@@ -25,9 +29,10 @@ const getTrackDetails = async (req, res) => {
       });
       res.send(details);
     } catch (error) {
-      res
-        .status(400)
-        .json({ msg: "Failed to fetch the tracking data", error: error });
+      res.status(400).json({
+        msg: "Failed to fetch the tracking data",
+        error: error,
+      });
     }
   } else {
     try {
