@@ -6,6 +6,16 @@ const {
   updateTrackPrices,
 } = require("../service/track.service");
 
+router.get("/", (req, res) => {
+  res.send("Tracker runnning successfully");
+});
+
+router.post("/", (req, res) => {
+  console.log(req.body);
+  console.log(req.params);
+  res.send("Tracker runnning successfully");
+});
+
 router.get("/track-details", (req, res) => {
   getTrackDetails(req, res);
 });
