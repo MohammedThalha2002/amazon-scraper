@@ -9,7 +9,7 @@ const postTrackDetails = async (req, res) => {
     await track.save();
     res
       .status(200)
-      .json({ msg: "Tracking data uploaded successfully", staus: "success" });
+      .json({ msg: "Tracking data uploaded successfully", status: "success" });
   } catch (error) {
     res.status(400).json({
       msg: "Failed to upload the tracking data",
