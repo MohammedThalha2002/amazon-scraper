@@ -1,24 +1,32 @@
 const UserModel = require("../model/UserModel");
 
 async function checkUser(req, res, next) {
-  const email = req.header.email;
-  console.log(email);
-
+  const email = req.body.email;
   const user = await UserModel.find({
     email: email,
   });
+  console.log(user);
 
-  if (user) {
+  if (user.length > 0) {
+    console.log("User already exixts");
     next();
   } else {
-    await registerUser(req.header, res).then(() => next());
+    console.log("headers", req.headers);
+    let newUser = {
+      email: email,
+      userId: req.body.userId,
+      token: req.headers.token,
+    };
+    await registerUser(newUser, res, next);
   }
 }
 
-async function registerUser(user, res) {
-  const user = new UserModel(user);
+async function registerUser(newUser, res, next) {
   try {
+    const user = new UserModel(newUser);
     await user.save();
+    console.log("New user created");
+    next();
   } catch (error) {
     res.status(400).json({
       msg: "Failed to register user",
@@ -27,3 +35,5 @@ async function registerUser(user, res) {
     });
   }
 }
+
+module.exports = { checkUser };

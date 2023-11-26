@@ -5,6 +5,7 @@ const {
   postTrackDetails,
   updateTrackPrices,
 } = require("../service/track.service");
+const { checkUser } = require("../middleware/checkUser");
 
 router.get("/", (req, res) => {
   res.send("Tracker runnning successfully");
@@ -21,10 +22,8 @@ router.get("/track-details", (req, res) => {
   getTrackDetails(req, res);
 });
 
-router.post("/addtrack", (req, res) => {
-  console.log(req.headers);
-  console.log(req.params);
-  console.log(req.body);
+router.post("/addtrack", checkUser, (req, res) => {
+  console.log(req.body); // email, url, price, id
   postTrackDetails(req, res);
 });
 

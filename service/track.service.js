@@ -2,7 +2,12 @@ const TrackModel = require("../model/TrackModel");
 const { scrape } = require("./scrape.service");
 
 const postTrackDetails = async (req, res) => {
-  const track = new TrackModel(req.body);
+  const newtrack = {
+    email: req.body.email,
+    url: req.body.url,
+    exp_price: req.body.exp_price,
+  };
+  const track = new TrackModel(newtrack);
   try {
     await track.save();
     res
