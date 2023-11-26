@@ -1,6 +1,7 @@
 const UserModel = require("../model/UserModel");
 
 async function checkUser(req, res, next) {
+  console.log(req.body);
   const email = req.body.email;
   const user = await UserModel.find({
     email: email,
@@ -11,7 +12,6 @@ async function checkUser(req, res, next) {
     console.log("User already exixts");
     next();
   } else {
-    console.log("headers", req.headers);
     let newUser = {
       email: email,
       userId: req.body.userId,
