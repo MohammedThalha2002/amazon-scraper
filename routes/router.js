@@ -11,6 +11,7 @@ router.get("/", (req, res) => {
 });
 
 router.post("/", (req, res) => {
+  console.log(req.headers);
   console.log(req.body);
   console.log(req.params);
   res.send("Tracker runnning successfully");
@@ -21,6 +22,9 @@ router.get("/track-details", (req, res) => {
 });
 
 router.post("/addtrack", (req, res) => {
+  console.log(req.headers);
+  console.log(req.params);
+  console.log(req.body);
   postTrackDetails(req, res);
 });
 
