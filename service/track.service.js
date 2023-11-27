@@ -1,5 +1,4 @@
 const TrackModel = require("../model/TrackModel");
-const { scrape } = require("./scrape.service");
 
 const postTrackDetails = async (req, res) => {
   const newtrack = {
