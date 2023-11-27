@@ -3,7 +3,8 @@ const router = express.Router();
 const {
   getTrackDetails,
   postTrackDetails,
-  updateTrackPrices,
+  updateExpectedPrices,
+  deleteTrack,
 } = require("../service/track.service");
 const { checkUser } = require("../middleware/checkUser");
 
@@ -22,17 +23,25 @@ router.get("/track-details", (req, res) => {
   getTrackDetails(req, res);
 });
 
+// POST
 router.post("/addtrack", checkUser, (req, res) => {
   console.log(req.body); // email, url, price, id
   postTrackDetails(req, res);
 });
 
+// GET
 router.get("/track-details/:email", (req, res) => {
   getTrackDetails(req, res);
 });
 
-router.get("/update-price/:email", (req, res) => {
-  updateTrackPrices(req, res);
+// UPDATE
+router.put("/update-price/:id/:price", (req, res) => {
+  updateExpectedPrices(req, res);
+});
+
+// DELETE
+router.delete("/delete/:id", (req, res) => {
+  deleteTrack(req, res);
 });
 
 module.exports = router;

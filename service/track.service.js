@@ -49,20 +49,50 @@ const getTrackDetails = async (req, res) => {
   }
 };
 
-const updateTrackPrices = async (req, res) => {
-  const email = req.params?.email;
+const updateExpectedPrices = async (req, res) => {
+  const id = req.params?.id;
+  const exp_price = parseInt(req.params?.price);
 
   try {
-    const details = await TrackModel.find({
-      email: email,
+    await TrackModel.findByIdAndUpdate(id, {
+      $set: {
+        exp_price: exp_price,
+      },
     });
-    await scrape(details);
-    res.send(details);
-  } catch (error) {
+    console.log(exp_price, "updated successfully");
     res
-      .status(400)
-      .json({ msg: "Failed to fetch the tracking data", error: error });
+      .status(200)
+      .json({ msg: "Price updated successfully", status: "success" });
+  } catch (error) {
+    res.status(400).json({
+      msg: "Failed to update the tracking data",
+      error: error,
+      staus: "failed",
+    });
   }
 };
 
-module.exports = { postTrackDetails, getTrackDetails, updateTrackPrices };
+const deleteTrack = async (req, res) => {
+  const id = req.params?.id;
+
+  try {
+    await TrackModel.deleteOne({ _id: id });
+    console.log("Deleted successfully");
+    res
+      .status(200)
+      .json({ msg: "Product Deleted successfully", status: "success" });
+  } catch (error) {
+    res.status(400).json({
+      msg: "Failed to delete the tracking data",
+      error: error,
+      staus: "failed",
+    });
+  }
+};
+
+module.exports = {
+  postTrackDetails,
+  getTrackDetails,
+  updateExpectedPrices,
+  deleteTrack,
+};
