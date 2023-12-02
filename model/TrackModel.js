@@ -1,4 +1,5 @@
 const mongoose = require("mongoose");
+const mongoosePaginate = require("mongoose-paginate-v2");
 
 const TrackSchema = mongoose.Schema({
   url: {
@@ -44,6 +45,8 @@ const TrackSchema = mongoose.Schema({
     default: true,
   },
 });
+
+TrackSchema.plugin(mongoosePaginate);
 
 const Track = mongoose.model("Track", TrackSchema);
 

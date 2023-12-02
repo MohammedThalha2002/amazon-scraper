@@ -22,12 +22,21 @@ const postTrackDetails = async (req, res) => {
 
 const getTrackDetails = async (req, res) => {
   const email = req.params?.email;
+  const page = req.params?.page | 1;
+
+  const options = {
+    page: page,
+    limit: 2,
+  };
 
   if (email) {
     try {
-      const details = await TrackModel.find({
-        email: email,
-      });
+      const details = await TrackModel.paginate(
+        {
+          email: email,
+        },
+        options
+      );
       res.send(details);
     } catch (error) {
       res.status(400).json({
@@ -37,7 +46,7 @@ const getTrackDetails = async (req, res) => {
     }
   } else {
     try {
-      const details = await TrackModel.find({});
+      const details = await TrackModel.paginate({}, options);
       res.send(details);
     } catch (error) {
       res
