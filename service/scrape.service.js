@@ -7,6 +7,13 @@ const scrape = async (url, email, exp_price) => {
     await getHTML(url).then(async (html) => {
       const $ = cheerio.load(html);
       let title = $("#productTitle").text();
+      if (title.length > 100) {
+        if (title.includes(",")) {
+          title = title.split(",")[0];
+        } else {
+          title = title.substring(0, 90) + "...";
+        }
+      }
       let features = [];
       $("#feature-bullets>ul>li").each((i, desc) => {
         if (i < 2) {
