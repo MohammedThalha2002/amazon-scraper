@@ -85,6 +85,48 @@ const updateExpectedPrices = async (req, res) => {
   }
 };
 
+const enableTracking = async (req, res) => {
+  const id = req.params?.id;
+
+  try {
+    await TrackModel.findByIdAndUpdate(id, {
+      $set: {
+        track_enabled: true,
+      },
+    });
+    res
+      .status(200)
+      .json({ msg: "Track enabled successfully", status: "success" });
+  } catch (error) {
+    res.status(400).json({
+      msg: "Failed to update the tracking data",
+      error: error,
+      staus: "failed",
+    });
+  }
+};
+
+const disableTracking = async (req, res) => {
+  const id = req.params?.id;
+
+  try {
+    await TrackModel.findByIdAndUpdate(id, {
+      $set: {
+        track_enabled: false,
+      },
+    });
+    res
+      .status(200)
+      .json({ msg: "Track enabled successfully", status: "success" });
+  } catch (error) {
+    res.status(400).json({
+      msg: "Failed to update the tracking data",
+      error: error,
+      staus: "failed",
+    });
+  }
+};
+
 const deleteTrack = async (req, res) => {
   const id = req.params?.id;
 
@@ -109,4 +151,6 @@ module.exports = {
   updateExpectedPrices,
   deleteTrack,
   getTrackDetailsById,
+  enableTracking,
+  disableTracking,
 };

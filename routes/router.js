@@ -46,6 +46,16 @@ router.put("/update-price/:id/:price", (req, res) => {
   updateExpectedPrices(req, res);
 });
 
+// UPDATE
+router.put("/enable-tracking/:id", (req, res) => {
+  updateExpectedPrices(req, res);
+});
+
+// UPDATE
+router.put("/disable-tracking/:id", (req, res) => {
+  updateExpectedPrices(req, res);
+});
+
 // DELETE
 router.delete("/delete/:id", (req, res) => {
   deleteTrack(req, res);

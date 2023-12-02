@@ -38,6 +38,11 @@ const TrackSchema = mongoose.Schema({
     type: String,
     required: true,
   },
+  track_enabled: {
+    type: Boolean,
+    required: true,
+    default: true,
+  },
 });
 
 const Track = mongoose.model("Track", TrackSchema);
