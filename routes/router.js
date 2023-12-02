@@ -5,6 +5,7 @@ const {
   postTrackDetails,
   updateExpectedPrices,
   deleteTrack,
+  getTrackDetailsById,
 } = require("../service/track.service");
 const { checkUser } = require("../middleware/checkUser");
 
@@ -19,19 +20,25 @@ router.post("/", (req, res) => {
   res.send("Tracker runnning successfully");
 });
 
+// GET ALL
 router.get("/track-details", (req, res) => {
   getTrackDetails(req, res);
+});
+
+// GET
+router.get("/track-details/:email", (req, res) => {
+  getTrackDetails(req, res);
+});
+
+// GET by id
+router.get("/track-details/id/:id", (req, res) => {
+  getTrackDetailsById(req, res);
 });
 
 // POST
 router.post("/addtrack", checkUser, (req, res) => {
   // console.log(req.body); // email, url, price, id
   postTrackDetails(req, res);
-});
-
-// GET
-router.get("/track-details/:email", (req, res) => {
-  getTrackDetails(req, res);
 });
 
 // UPDATE

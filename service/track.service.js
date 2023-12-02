@@ -17,7 +17,7 @@ const postTrackDetails = async (req, res) => {
       error: error,
       staus: "failed",
     });
-  };
+  }
 };
 
 const getTrackDetails = async (req, res) => {
@@ -44,6 +44,21 @@ const getTrackDetails = async (req, res) => {
         .status(400)
         .json({ msg: "Failed to fetch the tracking data", error: error });
     }
+  }
+};
+
+const getTrackDetailsById = async (req, res) => {
+  const id = req.params?.id;
+
+  try {
+    const details = await TrackModel.findById(id);
+    console.log(details);
+    res.send(details);
+  } catch (error) {
+    res.status(400).json({
+      msg: "Failed to fetch the tracking data",
+      error: error,
+    });
   }
 };
 
@@ -93,4 +108,5 @@ module.exports = {
   getTrackDetails,
   updateExpectedPrices,
   deleteTrack,
+  getTrackDetailsById,
 };
