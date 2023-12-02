@@ -1,14 +1,13 @@
 const TrackModel = require("../model/TrackModel");
+const scrape = require("./scrape.service");
 
 const postTrackDetails = async (req, res) => {
-  const newtrack = {
-    email: req.body.email,
-    url: req.body.url,
-    exp_price: req.body.exp_price,
-  };
-  const track = new TrackModel(newtrack);
+  let url = req.body.url;
+  let email = req.body.email;
+  let exp_price = req.body.exp_price;
+
   try {
-    await track.save();
+    await scrape(url, email, exp_price);
     res
       .status(200)
       .json({ msg: "Tracking data uploaded successfully", status: "success" });
@@ -18,7 +17,7 @@ const postTrackDetails = async (req, res) => {
       error: error,
       staus: "failed",
     });
-  }
+  };
 };
 
 const getTrackDetails = async (req, res) => {

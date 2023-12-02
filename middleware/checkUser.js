@@ -1,12 +1,12 @@
 const UserModel = require("../model/UserModel");
 
 async function checkUser(req, res, next) {
-  console.log(req.body);
+  // console.log(req.body);
   const email = req.body.email;
   const user = await UserModel.find({
     email: email,
   });
-  console.log(user);
+  // console.log(user);
 
   if (user.length > 0) {
     console.log("User already exixts");

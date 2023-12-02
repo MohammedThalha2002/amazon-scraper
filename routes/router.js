@@ -25,7 +25,7 @@ router.get("/track-details", (req, res) => {
 
 // POST
 router.post("/addtrack", checkUser, (req, res) => {
-  console.log(req.body); // email, url, price, id
+  // console.log(req.body); // email, url, price, id
   postTrackDetails(req, res);
 });
 
