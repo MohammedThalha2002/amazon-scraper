@@ -6,6 +6,8 @@ const {
   updateExpectedPrices,
   deleteTrack,
   getTrackDetailsById,
+  enableTracking,
+  disableTracking,
 } = require("../service/track.service");
 const { checkUser } = require("../middleware/checkUser");
 
@@ -48,12 +50,12 @@ router.put("/update-price/:id/:price", (req, res) => {
 
 // UPDATE
 router.put("/enable-tracking/:id", (req, res) => {
-  updateExpectedPrices(req, res);
+  enableTracking(req, res);
 });
 
 // UPDATE
 router.put("/disable-tracking/:id", (req, res) => {
-  updateExpectedPrices(req, res);
+  disableTracking(req, res);
 });
 
 // DELETE
