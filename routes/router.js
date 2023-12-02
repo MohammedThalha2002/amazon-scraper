@@ -23,12 +23,17 @@ router.post("/", (req, res) => {
 });
 
 // GET ALL
-router.get("/track-details", (req, res) => {
-  getTrackDetails(req, res);
-});
+// router.get("/track-details", (req, res) => {
+//   getTrackDetails(req, res);
+// });
 
 // GET
-router.get("/track-details/:email", (req, res) => {
+// router.get("/track-details/:email", (req, res) => {
+//   getTrackDetails(req, res);
+// });
+
+// GET
+router.get("/track-details/:page", (req, res) => {
   getTrackDetails(req, res);
 });
 

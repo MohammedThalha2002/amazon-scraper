@@ -22,7 +22,8 @@ const postTrackDetails = async (req, res) => {
 
 const getTrackDetails = async (req, res) => {
   const email = req.params?.email;
-  const page = req.params?.page | 1;
+  const page = req.params?.page || 1;
+  console.log(page);
 
   const options = {
     page: page,
