@@ -29,8 +29,8 @@ const scrape = async (url, email, exp_price) => {
 
       const data = {
         url: url,
-        title: title.trim(),
-        features: features,
+        title: title.trim().replace(/[|&;$%@"<>()+,]/g, ""),
+        features: features.replace(/[|&;$%@"<>()+,]/g, ""),
         imgUrl: imgUrl,
         inStock: inStock == "In stock" ? true : false,
         rating: parseFloat(rating),
