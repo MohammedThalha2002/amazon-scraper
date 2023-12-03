@@ -57,6 +57,32 @@ const getTrackDetails = async (req, res) => {
   }
 };
 
+const getAllTrackDetails = async (req, res) => {
+  const email = req.params?.email;
+  if (email) {
+    try {
+      const details = await TrackModel.find({
+        email: email,
+      });
+      res.send(details);
+    } catch (error) {
+      res.status(400).json({
+        msg: "Failed to fetch the tracking data",
+        error: error,
+      });
+    }
+  } else {
+    try {
+      const details = await TrackModel.find({});
+      res.send(details);
+    } catch (error) {
+      res
+        .status(400)
+        .json({ msg: "Failed to fetch the tracking data", error: error });
+    }
+  }
+};
+
 const getTrackDetailsById = async (req, res) => {
   const id = req.params?.id;
 
@@ -163,4 +189,5 @@ module.exports = {
   getTrackDetailsById,
   enableTracking,
   disableTracking,
+  getAllTrackDetails,
 };

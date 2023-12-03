@@ -8,13 +8,16 @@ const {
   getTrackDetailsById,
   enableTracking,
   disableTracking,
+  getAllTrackDetails,
 } = require("../service/track.service");
 const { checkUser } = require("../middleware/checkUser");
 
+// GET - ROOT TEST
 router.get("/", (req, res) => {
   res.send("Tracker runnning successfully");
 });
 
+// POST - ROOT TEST
 router.post("/", (req, res) => {
   console.log(req.headers);
   console.log(req.body);
@@ -24,20 +27,20 @@ router.post("/", (req, res) => {
 
 // GET ALL
 router.get("/track-details", (req, res) => {
-  getTrackDetails(req, res);
+  getAllTrackDetails(req, res);
 });
 
-// GET
+// GET ALL BY EMAIL
+router.get("/track-details/:email", (req, res) => {
+  getAllTrackDetails(req, res);
+});
+
+// GET BY EMAIL AND PAGE
 router.get("/track-details/:email/:page", (req, res) => {
   getTrackDetails(req, res);
 });
 
-// GET
-// router.get("/track-details/:page", (req, res) => {
-//   getTrackDetails(req, res);
-// });
-
-// GET by id
+// GET BY ID
 router.get("/track-details/id/:id", (req, res) => {
   getTrackDetailsById(req, res);
 });
@@ -53,12 +56,12 @@ router.put("/update-price/:id/:price", (req, res) => {
   updateExpectedPrices(req, res);
 });
 
-// UPDATE
+// UPDATE - ENABLE TRACKING
 router.put("/enable-tracking/:id", (req, res) => {
   enableTracking(req, res);
 });
 
-// UPDATE
+// UPDATE - DISABLE TRACKING
 router.put("/disable-tracking/:id", (req, res) => {
   disableTracking(req, res);
 });
