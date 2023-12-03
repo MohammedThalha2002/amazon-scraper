@@ -41,7 +41,8 @@ router.get("/track-details/:email/:page", (req, res) => {
 });
 
 // GET BY ID
-router.get("/track-details/id/:id", (req, res) => {
+router.get("/track-detail-by-id/:id", (req, res) => {
+  console.log("GETTING BY ID");
   getTrackDetailsById(req, res);
 });
 
