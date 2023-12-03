@@ -17,7 +17,12 @@ const scrape = async (url, email, exp_price) => {
       let features = [];
       $("#feature-bullets>ul>li").each((i, desc) => {
         if (i < 2) {
-          features.push($(desc).text().trim());
+          features.push(
+            $(desc)
+              .text()
+              .trim()
+              .replace(/[|&;$%@"<>()+,]/g, "")
+          );
         }
       });
       let imgUrl = $("#imgTagWrapperId>img").attr("src");
@@ -30,7 +35,7 @@ const scrape = async (url, email, exp_price) => {
       const data = {
         url: url,
         title: title.trim().replace(/[|&;$%@"<>()+,]/g, ""),
-        features: features.replace(/[|&;$%@"<>()+,]/g, ""),
+        features: features,
         imgUrl: imgUrl,
         inStock: inStock == "In stock" ? true : false,
         rating: parseFloat(rating),

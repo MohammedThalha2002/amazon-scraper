@@ -23,19 +23,19 @@ router.post("/", (req, res) => {
 });
 
 // GET ALL
-// router.get("/track-details", (req, res) => {
-//   getTrackDetails(req, res);
-// });
-
-// GET
-// router.get("/track-details/:email", (req, res) => {
-//   getTrackDetails(req, res);
-// });
-
-// GET
-router.get("/track-details/:page", (req, res) => {
+router.get("/track-details", (req, res) => {
   getTrackDetails(req, res);
 });
+
+// GET
+router.get("/track-details/:email/:page", (req, res) => {
+  getTrackDetails(req, res);
+});
+
+// GET
+// router.get("/track-details/:page", (req, res) => {
+//   getTrackDetails(req, res);
+// });
 
 // GET by id
 router.get("/track-details/id/:id", (req, res) => {
