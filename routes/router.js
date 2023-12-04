@@ -12,6 +12,7 @@ const {
   postTrackDetailsDirectly,
 } = require("../service/track.service");
 const { checkUser } = require("../middleware/checkUser");
+const { createUser } = require("../service/authenticate.service");
 
 // GET - ROOT TEST
 router.get("/", (req, res) => {
@@ -45,6 +46,12 @@ router.get("/track-details/:email/:page", (req, res) => {
 router.get("/track-detail-by-id/:id", (req, res) => {
   console.log("GETTING BY ID");
   getTrackDetailsById(req, res);
+});
+
+// authenticate
+router.post("/login", (req, res) => {
+  // body -> email, token, userId
+  createUser(req, res);
 });
 
 // POST
