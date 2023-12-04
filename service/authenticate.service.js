@@ -25,7 +25,7 @@ const createUser = async (req, res) => {
       res.status(400).json({
         msg: "Failed to update user",
         error: error,
-        staus: "failed",
+        status: "failed",
       });
     }
   } else {
@@ -36,14 +36,14 @@ const createUser = async (req, res) => {
       await user.save();
       res.status(200).json({
         msg: "User registered successfully",
-        staus: "success",
+        status: "success",
       });
     } catch (error) {
       console.log(error);
       res.status(400).json({
         msg: "Failed to register user",
         error: error,
-        staus: "failed",
+        status: "failed",
       });
     }
   }

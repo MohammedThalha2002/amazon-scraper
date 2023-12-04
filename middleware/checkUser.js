@@ -12,7 +12,7 @@ async function checkUser(req, res, next) {
   } else {
     res.status(400).json({
       msg: "authFailed",
-      staus: "success",
+      status: "success",
     });
   }
 }
