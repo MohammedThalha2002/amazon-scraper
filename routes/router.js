@@ -9,6 +9,7 @@ const {
   enableTracking,
   disableTracking,
   getAllTrackDetails,
+  postTrackDetailsDirectly,
 } = require("../service/track.service");
 const { checkUser } = require("../middleware/checkUser");
 
@@ -50,6 +51,12 @@ router.get("/track-detail-by-id/:id", (req, res) => {
 router.post("/addtrack", checkUser, (req, res) => {
   // console.log(req.body); // email, url, price, id
   postTrackDetails(req, res);
+});
+
+// POST
+router.post("/addtrack-direct", checkUser, (req, res) => {
+  // console.log(req.body); // email, url, price, id
+  postTrackDetailsDirectly(req, res);
 });
 
 // UPDATE

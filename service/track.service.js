@@ -20,6 +20,23 @@ const postTrackDetails = async (req, res) => {
   }
 };
 
+const postTrackDetailsDirectly = async (req, res) => {
+  const data = req.body;
+  try {
+    const track = new TrackModel(data);
+    await track.save();
+    res
+      .status(200)
+      .json({ msg: "Tracking data uploaded successfully", status: "success" });
+  } catch (error) {
+    res.status(400).json({
+      msg: "Failed to upload the tracking data",
+      error: error,
+      staus: "failed",
+    });
+  }
+};
+
 const getTrackDetails = async (req, res) => {
   const email = req.params?.email;
   const page = req.params?.page || 1;
@@ -190,4 +207,5 @@ module.exports = {
   enableTracking,
   disableTracking,
   getAllTrackDetails,
+  postTrackDetailsDirectly,
 };
