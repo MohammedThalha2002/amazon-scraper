@@ -49,4 +49,22 @@ const createUser = async (req, res) => {
   }
 };
 
+const chechAuth = async (req, res) => {
+  const email = req.params.email;
+  let user = await UserModel.find({
+    email: email,
+  });
+
+  if (user.length > 0) {
+    // user exists
+    res.status(200).json({
+      status: "success",
+    });
+  } else {
+    res.status(200).json({
+      status: "failed",
+    });
+  }
+};
+
 module.exports = { createUser };

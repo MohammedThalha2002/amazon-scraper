@@ -54,6 +54,12 @@ router.post("/login", (req, res) => {
   createUser(req, res);
 });
 
+// authenticate
+router.get("/chech-auth/:email", (req, res) => {
+  // body -> email,
+  createUser(req, res);
+});
+
 // POST
 router.post("/addtrack", checkUser, (req, res) => {
   // console.log(req.body); // email, url, price, id
