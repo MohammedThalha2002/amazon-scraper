@@ -78,7 +78,7 @@ const getAllTrackDetails = async (req, res) => {
   const email = req.params?.email;
   if (email) {
     try {
-      const details = await TrackModel.find({
+      const details = await TrackModel.paginate({
         email: email,
       });
       res.send(details);
