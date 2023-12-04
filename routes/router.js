@@ -12,7 +12,7 @@ const {
   postTrackDetailsDirectly,
 } = require("../service/track.service");
 const { checkUser } = require("../middleware/checkUser");
-const { createUser } = require("../service/authenticate.service");
+const { createUser, checkAuth } = require("../service/authenticate.service");
 
 // GET - ROOT TEST
 router.get("/", (req, res) => {
@@ -56,8 +56,8 @@ router.post("/login", (req, res) => {
 
 // authenticate
 router.get("/chech-auth/:email", (req, res) => {
-  // body -> email,
-  createUser(req, res);
+  // params -> email
+  checkAuth(req, res);
 });
 
 // POST

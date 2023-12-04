@@ -49,7 +49,7 @@ const createUser = async (req, res) => {
   }
 };
 
-const chechAuth = async (req, res) => {
+const checkAuth = async (req, res) => {
   const email = req.params.email;
   let user = await UserModel.find({
     email: email,
@@ -67,4 +67,4 @@ const chechAuth = async (req, res) => {
   }
 };
 
-module.exports = { createUser };
+module.exports = { createUser, checkAuth };
