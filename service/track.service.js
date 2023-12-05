@@ -22,6 +22,7 @@ const postTrackDetails = async (req, res) => {
 
 const postTrackDetailsDirectly = async (req, res) => {
   const data = req.body;
+  console.log(data);
   data.title = data.title.trim().replace(/[|/&;$%@"<>()+,]/g, "");
   data.features = data.features[0].replace(/\\"/g, '"');
   data.features = JSON.parse(data.features);
@@ -34,6 +35,7 @@ const postTrackDetailsDirectly = async (req, res) => {
       .status(200)
       .json({ msg: "Tracking data uploaded successfully", status: "success" });
   } catch (error) {
+    console.log(error);
     res.status(400).json({
       msg: "Failed to upload the tracking data",
       error: error,
