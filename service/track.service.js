@@ -24,7 +24,7 @@ const postTrackDetailsDirectly = async (req, res) => {
   const data = req.body;
   console.log(data);
   data.title = data.title.trim().replace(/[|/&;$%@"<>()+,]/g, "");
-  data.features = data.features[0].replace(/\\"/g, '"');
+  data.features = data.features.replace(/\\"/g, '"');
   data.features = JSON.parse(data.features);
   data.features[0] = data.features[0].replace("//", "");
   data.features[1] = data.features[1].replace("//", "");
