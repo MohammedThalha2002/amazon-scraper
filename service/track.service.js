@@ -51,7 +51,7 @@ const getTrackDetails = async (req, res) => {
 
   const options = {
     page: page,
-    limit: 2,
+    limit: 3,
   };
 
   if (email) {
