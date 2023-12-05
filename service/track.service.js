@@ -22,9 +22,11 @@ const postTrackDetails = async (req, res) => {
 
 const postTrackDetailsDirectly = async (req, res) => {
   const data = req.body;
-  data.title = data.title.trim().replace(/[|&;$%@"<>()+,]/g, "");
-  data.features[0] = data.features[0].trim().replace(/[|&;$%@"<>()+,]/g, "");
-  data.features[1] = data.features[1].trim().replace(/[|&;$%@"<>()+,]/g, "");
+  data.title = data.title.trim().replace(/[|/&;$%@"<>()+,]/g, "");
+  data.features = data.features[0].replace(/\\"/g, '"');
+  data.features = JSON.parse(data.features);
+  data.features[0] = data.features[0].replace("//", "");
+  data.features[1] = data.features[1].replace("//", "");
   try {
     const track = new TrackModel(data);
     await track.save();
