@@ -12,10 +12,26 @@ const postTrackDetails = async (req, res) => {
       .status(200)
       .json({ msg: "Tracking data uploaded successfully", status: "success" });
   } catch (error) {
-    res.status(400).json({
+    const data = {
+      url: url,
+      title: "Updating...",
+      features: ["Updating...", "Updating..."],
+      imgUrl:
+        "https://upload.wikimedia.org/wikipedia/commons/thumb/3/3f/Placeholder_view_vector.svg/310px-Placeholder_view_vector.svg.png",
+      inStock: true,
+      rating: 0.0,
+      exp_price: exp_price,
+      curr_price: 0.0,
+      email: email,
+    };
+    console.log("Saving Failed url data");
+    console.log(data);
+    const track = new TrackModel(data);
+    await track.save();
+    res.status(200).json({
       msg: "Failed to upload the tracking data",
       error: error,
-      staus: "failed",
+      staus: "success",
     });
   }
 };

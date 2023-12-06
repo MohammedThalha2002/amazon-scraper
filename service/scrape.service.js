@@ -50,6 +50,7 @@ const scrape = async (url, email, exp_price) => {
       await track.save();
     });
   } catch (error) {
+    console.log("Failed to fetch the data from the url");
     console.log(error);
   }
 };
