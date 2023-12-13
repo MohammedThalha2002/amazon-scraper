@@ -82,7 +82,7 @@ const scrape = async (url, email, exp_price, res) => {
     res.status(200).json({
       msg: "Failed to upload the tracking data",
       error: error,
-      staus: "success",
+      status: "success",
     });
   }
 };

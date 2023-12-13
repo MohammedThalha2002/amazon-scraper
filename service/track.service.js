@@ -27,7 +27,7 @@ const postTrackDetailsDirectly = async (req, res) => {
     res.status(400).json({
       msg: "Failed to upload the tracking data",
       error: error,
-      staus: "failed",
+      status: "failed",
     });
   }
 };
