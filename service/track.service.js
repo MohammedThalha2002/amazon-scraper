@@ -205,6 +205,24 @@ const deleteTrack = async (req, res) => {
   }
 };
 
+const deleteAllTracks = async (req, res) => {
+  const email = req.params?.email;
+
+  try {
+    await TrackModel.deleteMany({ email: email });
+    console.log("Deleted successfully");
+    res
+      .status(200)
+      .json({ msg: "Product Deleted successfully", status: "success" });
+  } catch (error) {
+    res.status(400).json({
+      msg: "Failed to delete the tracking data",
+      error: error,
+      staus: "failed",
+    });
+  }
+};
+
 module.exports = {
   postTrackDetails,
   getTrackDetails,
@@ -215,4 +233,5 @@ module.exports = {
   disableTracking,
   getAllTrackDetails,
   postTrackDetailsDirectly,
+  deleteAllTracks,
 };

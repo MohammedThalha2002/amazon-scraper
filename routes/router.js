@@ -10,6 +10,7 @@ const {
   disableTracking,
   getAllTrackDetails,
   postTrackDetailsDirectly,
+  deleteAllTracks,
 } = require("../service/track.service");
 const { checkUser } = require("../middleware/checkUser");
 const { createUser, checkAuth } = require("../service/authenticate.service");
@@ -90,6 +91,11 @@ router.put("/disable-tracking/:id", (req, res) => {
 // DELETE
 router.delete("/delete/:id", (req, res) => {
   deleteTrack(req, res);
+});
+
+// DELETE
+router.delete("/delete-by-email/:email", (req, res) => {
+  deleteAllTracks(req, res);
 });
 
 module.exports = router;
