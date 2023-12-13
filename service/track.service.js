@@ -5,35 +5,7 @@ const postTrackDetails = async (req, res) => {
   let url = req.body.url;
   let email = req.body.email;
   let exp_price = req.body.exp_price;
-
-  try {
-    await scrape(url, email, exp_price);
-    res
-      .status(200)
-      .json({ msg: "Tracking data uploaded successfully", status: "success" });
-  } catch (error) {
-    const data = {
-      url: url,
-      title: "Updating...",
-      features: ["Updating...", "Updating..."],
-      imgUrl:
-        "https://upload.wikimedia.org/wikipedia/commons/thumb/3/3f/Placeholder_view_vector.svg/310px-Placeholder_view_vector.svg.png",
-      inStock: true,
-      rating: 0.0,
-      exp_price: exp_price,
-      curr_price: 0.0,
-      email: email,
-    };
-    console.log("Saving Failed url data");
-    console.log(data);
-    const track = new TrackModel(data);
-    await track.save();
-    res.status(200).json({
-      msg: "Failed to upload the tracking data",
-      error: error,
-      staus: "success",
-    });
-  }
+  await scrape(url, email, exp_price, res);
 };
 
 const postTrackDetailsDirectly = async (req, res) => {
