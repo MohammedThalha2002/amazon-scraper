@@ -50,11 +50,13 @@ const getTrackDetails = async (req, res) => {
         },
         options
       );
+      details.status = "success";
       res.send(details);
     } catch (error) {
       res.status(400).json({
         msg: "Failed to fetch the tracking data",
         error: error,
+        status: "failed",
       });
     }
   } else {
