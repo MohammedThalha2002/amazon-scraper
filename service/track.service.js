@@ -1,4 +1,5 @@
 const TrackModel = require("../model/TrackModel");
+const cronJob = require("./cronjob.service");
 const scrape = require("./scrape.service");
 
 const postTrackDetails = async (req, res) => {
@@ -223,6 +224,23 @@ const deleteAllTracks = async (req, res) => {
   }
 };
 
+const getProductDetailsByUrl = async (req,res) => {
+  let url = req.body.url;
+  let email = "";
+  let exp_price = 10000000;
+  await scrape(url, email, exp_price, res);
+}
+
+const updateTrackPricesPeriodically = async(req,res) => {
+  try {
+    const details = await TrackModel.find({});
+    await cronJob(details);
+    res.send("Scraped");
+  } catch (error) {
+    console.log(error);
+  }
+}
+
 module.exports = {
   postTrackDetails,
   getTrackDetails,
@@ -234,4 +252,6 @@ module.exports = {
   getAllTrackDetails,
   postTrackDetailsDirectly,
   deleteAllTracks,
+  getProductDetailsByUrl,
+  updateTrackPricesPeriodically
 };

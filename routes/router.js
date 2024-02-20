@@ -11,6 +11,8 @@ const {
   getAllTrackDetails,
   postTrackDetailsDirectly,
   deleteAllTracks,
+  getProductDetailsByUrl,
+  updateTrackPricesPeriodically,
 } = require("../service/track.service");
 const { checkUser } = require("../middleware/checkUser");
 const { createUser, checkAuth } = require("../service/authenticate.service");
@@ -96,6 +98,20 @@ router.delete("/delete/:id", (req, res) => {
 // DELETE
 router.delete("/delete-by-email/:email", (req, res) => {
   deleteAllTracks(req, res);
+});
+
+// GET PRODUCT DETAILS BY URL
+router.post("/get-by-url", (req, res) => {
+  getProductDetailsByUrl(req, res);
+});
+
+// TO RUN CRON JOB
+router.get("/run-cron-job", async (req, res) => {
+  try {
+    await updateTrackPricesPeriodically(res);
+  } catch (error) {
+    res.send(error);
+  }
 });
 
 module.exports = router;
